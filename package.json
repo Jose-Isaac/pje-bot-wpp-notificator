@@ -1,0 +1,33 @@
+{
+  "name": "pje-bot-wpp-notificator",
+  "version": "0.0.1",
+  "description": "Esse projeto é resposável por forneçer uma api para envio de notificações do pje atavés do whatsapp",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jose-Isaac/pje-bot-wpp-notificator.git"
+  },
+  "keywords": [
+    "integrator",
+    "bot"
+  ],
+  "author": "Jose-Isaac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jose-Isaac/pje-bot-wpp-notificator/issues"
+  },
+  "homepage": "https://github.com/Jose-Isaac/pje-bot-wpp-notificator#readme",
+  "dependencies": {
+    "@wppconnect-team/wppconnect": "^1.28.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
