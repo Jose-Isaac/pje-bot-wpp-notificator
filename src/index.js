@@ -1,15 +1,10 @@
 const { app }  = require("./config")
-const wppConnect = require("@wppconnect-team/wppconnect");
-
-wppConnect.create().then((createdClient) => {
-    createdClient.onMessage((message) => {
-        if (message.body) {
-            console.log(message.body)
-        }
-    });
-});
+const { wppCreateConnection } = require("./services/wppService")
 
 const serverPort = process.env.SERVER_PORT
+
+wppCreateConnection()
+
 app.listen(serverPort, () => {
     console.log(`Server listening in ${serverPort}`);
 });
