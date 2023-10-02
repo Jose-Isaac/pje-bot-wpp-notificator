@@ -1,12 +1,16 @@
 const nodemailer = require("nodemailer")
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD
-  }
-});
+
+let transporter
+const emailConnect = () => {
+  transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD
+    }
+  });
+}
 
 const sendEmail = (to, messages) => {
   let text = messages.join('\n')
@@ -25,4 +29,4 @@ const sendEmail = (to, messages) => {
   })
 }
 
-module.exports = { sendEmail }
+module.exports = { sendEmail, emailConnect }
