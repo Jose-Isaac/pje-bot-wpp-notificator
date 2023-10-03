@@ -18,6 +18,20 @@ const sendMessage = (request, response) => {
     }
 }
 
+const sendPdfFile = (request, response) => {
+    try {
+        console.log(request.files)
+
+        console.log(request.files.pdf)
+
+        response.json({ message: 'Mensagem enviada com sucesso' });
+    } catch (error) {
+        response
+            .status(error.code || 500)
+            .json({ message: error.message })
+    }
+}
+
 const sendWppMessage = (number, messages) => {
     for (let message of messages) {
         wppSendMessage(number, message);
@@ -82,4 +96,4 @@ const validateNumber = (number) => {
     }
 }
 
-module.exports = { sendMessage }
+module.exports = { sendMessage, sendPdfFile }
