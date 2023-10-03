@@ -17,4 +17,16 @@ const wppSendMessage = (number, message) => {
     client.sendText(`${number}@c.us`, message)
 }
 
-module.exports = { wppCreateConnection, wppSendMessage }
+const wppSendFile = (number, pdf) => {
+     client.sendFile(
+        number,
+        pdf.tempFilePath,
+        {
+            type: 'document',
+            mimetype: pdf.mimetype,
+            filename: pdf.name
+        }
+    )
+}
+
+module.exports = { wppCreateConnection, wppSendMessage, wppSendFile }

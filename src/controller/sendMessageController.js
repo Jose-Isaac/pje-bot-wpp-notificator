@@ -1,5 +1,9 @@
-const { wppSendMessage } = require("../services/wppService")
+const {
+    wppSendMessage,
+    wppSendFile
+} = require("../services/wppService")
 const { sendEmail } = require("../services/emailService")
+const {request, response} = require("express");
 
 const sendMessage = (request, response) => {
     try {
@@ -9,6 +13,21 @@ const sendMessage = (request, response) => {
 
         if (number !== null) sendWppMessage(number, messages)
         if (email !== null) sendEmailMessage(email, messages)
+
+        response.json({ message: 'Mensagem enviada com sucesso' });
+    } catch (error) {
+        response
+            .status(error.code || 500)
+            .json({ message: error.message })
+    }
+}
+
+const sendMessageWithPdf = (request, response) => {
+    try {
+        const { number } = request.body
+        const { pdf } = request.files
+
+        wppSendFile(number, pdf)
 
         response.json({ message: 'Mensagem enviada com sucesso' });
     } catch (error) {
@@ -82,4 +101,4 @@ const validateNumber = (number) => {
     }
 }
 
-module.exports = { sendMessage }
+module.exports = { sendMessage, sendMessageWithPdf }
