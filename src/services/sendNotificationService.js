@@ -11,14 +11,16 @@ const sendNotificationMessage = async (number, email, messages, pdf) => {
         validateNumber(number)
         validateEmail(email)
 
-        // if (number !== null) {
-        //     await wppSendMessage(number, messages)
-        //     await wppSendFile(number, pdf)
-        // }
+        const key = uuidv4()
 
-        // if (email !== null) await sendEmail(email, messages)
+        if (number !== null) {
+            await wppSendMessage(number, [...messages, `Chave de assinatura: ${key}`])
+            await wppSendFile(number, pdf)
+        }
 
-        const key = await saveNotification(number)
+        if (email !== null) await sendEmail(email, messages)
+
+        await saveNotification(number, key)
 
         return { key, message: 'Notificação enviada com sucesso!' }
     } catch (error) {
@@ -26,17 +28,13 @@ const sendNotificationMessage = async (number, email, messages, pdf) => {
     }
 }
 
-const saveNotification = async (number) => {
-    const key = uuidv4()
-
+const saveNotification = async (number, key) => {
     await save(
         {
             number,
             key
         }
     )
-
-    return key
 }
 
 const validateMessages = (messages) => {
