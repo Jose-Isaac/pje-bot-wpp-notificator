@@ -1,4 +1,4 @@
-const wppConnect = require("@wppconnect-team/wppconnect");
+const wppConnect = require("@wppconnect-team/wppconnect")
 
 let client
 const wppCreateConnection = () => {
@@ -13,12 +13,14 @@ const wppCreateConnection = () => {
     });
 }
 
-const wppSendMessage = (number, message) => {
-    client.sendText(`${number}@c.us`, message)
+const wppSendMessage = async (number, messages) => {
+    for (let message of messages) {
+        await client.sendText(`${number}@c.us`, message)
+    }
 }
 
-const wppSendFile = (number, pdf) => {
-     client.sendFile(
+const wppSendFile = async (number, pdf) => {
+     await client.sendFile(
         number,
         pdf.tempFilePath,
         {

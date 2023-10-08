@@ -1,12 +1,8 @@
 const express = require("express")
-const {
-    sendMessage,
-    sendMessageWithPdf
-} = require("../controller/sendMessageController")
+const { sendNotification } = require("../controller/sendMessageController")
 
 const sendMessageRouter = express.Router()
 
-sendMessageRouter.post('/', sendMessage)
-sendMessageRouter.post('/pdf', sendMessageWithPdf)
+sendMessageRouter.post('/', sendNotification)
 
 module.exports = { sendMessageRouter }

@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres:11.4
+    container_name: pje-bot-db
+    environment:
+      - POSTGRES_DB=pje-bot
+      - POSTGRES_PASSWORD=local
+      - POSTGRES_USER=local
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/rules.sql:/docker-entrypoint-iniydb.d/rules.sql
+    restart: always

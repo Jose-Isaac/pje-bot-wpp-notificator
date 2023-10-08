@@ -1,6 +1,7 @@
 require("dotenv").config()
 const cors = require("cors")
 const { sendMessageRouter } = require("./routes/sendMessageRouter.js")
+const { checkNotificationRouter } = require('./routes/checkNotificationRouter')
 const upload = require("express-fileupload")
 
 const express = require("express")
@@ -15,6 +16,7 @@ app.use(upload({
 }))
 
 app.use("/send/message", sendMessageRouter)
+app.use("/check/notification", checkNotificationRouter)
 
 module.exports = { app }
 
